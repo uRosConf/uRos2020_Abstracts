@@ -3,8 +3,10 @@ library(data.table)
 library(wordcloud2)
 library(tm)
 
-abst <- readxl::read_excel("abstracts.xlsx")
-setDT(abst)
+# abst <- readxl::read_excel("abstracts.xlsx")
+# setDT(abst)
+abst <- readRDS("abstracts.Rds")
+abst <- abst[sample(1:nrow(abst))]
 titles <- 1:length(abst$Title)
 names(titles) <- as.list(abst$Title)
 types <- c("All", sort(unique(abst[["Type of talk"]])))
