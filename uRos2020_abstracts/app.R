@@ -32,15 +32,15 @@ ui <- fluidPage(
             fluidRow(
                 column(
                     width = 12,
-                    align = "center",
+                    align = "left",
                     h3(code("Content")), h5(htmlOutput("curAbstract"))
                 )
             ),
             fluidRow(
                 column(
                     width = 12,
-                    align = "center",
-                    h3(code("References")), h5(htmlOutput("curReferences"))
+                    align = "left",
+                    htmlOutput("curReferences")
                 )
             )
         )
@@ -70,11 +70,12 @@ server <- function(session, input, output) {
         return(p(HTML(gsub("\\n", "<br/>", cur[["Abstract"]]))))
     })
     output$curReferences <- renderUI({
+        out <- list()
+        
         refs <- abst[as.numeric(input$title), References]
         if (!is.na(refs)) {
-            out <- p(HTML(gsub("\\n", "<br/>", refs)))
-        } else {
-            out <- "not-available"
+            out[[1]] <- h3(code("References"))
+            out[[2]] <- p(HTML(gsub("\\n", "<br/>", refs)))
         }
         out
     })
