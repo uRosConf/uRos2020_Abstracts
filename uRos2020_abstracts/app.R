@@ -36,13 +36,15 @@ suppressWarnings(wcd <- wordcloud_data(abst$Abstract))
 ui <- fluidPage(
   titlePanel("uRos 2020 Abstracts"),
   tags$script(HTML("
-    window.addEventListener('resize', function(){
+    function wordcloud_resize() {
       if ($(window).width()<=755) {
         $('#wordcloud').hide();
       } else {
         $('#wordcloud').show();
       }
-    });
+    }
+    $(document).ready(wordcloud_resize)
+    window.addEventListener('resize', wordcloud_resize);
   ")),
   sidebarLayout(
     sidebarPanel(
