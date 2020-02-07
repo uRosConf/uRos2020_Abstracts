@@ -35,11 +35,20 @@ suppressWarnings(wcd <- wordcloud_data(abst$Abstract))
 
 ui <- fluidPage(
   titlePanel("uRos 2020 Abstracts"),
+  tags$script(HTML("
+    window.addEventListener('resize', function(){
+      if ($(window).width()<=755) {
+        $('#wordcloud').hide();
+      } else {
+        $('#wordcloud').show();
+      }
+    });
+  ")),
   sidebarLayout(
     sidebarPanel(
       selectInput("type", h3("Type of talk"), choices = types),
       selectInput("title", h3("Abstract title"), choices = titles),
-      h3("Contents"),
+      hr(),
       wordcloud2Output("wordcloud")
     ),
     mainPanel(
