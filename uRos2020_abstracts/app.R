@@ -6,7 +6,7 @@ library(tm)
 # abst <- readxl::read_excel("abstracts.xlsx")
 # setDT(abst)
 abst <- readRDS("abstracts.Rds")
-abst <- abst[sample(1:nrow(abst))]
+abst <- abst[sample(1:nrow(abst)), ]
 setorderv(abst, c("Type of talk", "Title"))
 
 titles <- 1:length(abst$Title)
@@ -89,7 +89,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(session, input, output) {
   output$curTitle <- renderText({
-    abst[as.numeric(input$title), Title]
+    abst[as.numeric(input$title), "Title"]
   })
 
   output$curAuthor <- renderText({
@@ -111,7 +111,7 @@ server <- function(session, input, output) {
 
   output$curReferences <- renderUI({
     out <- list()
-    refs <- abst[as.numeric(input$title), References]
+    refs <- abst[as.numeric(input$title), "References"]
     if (!is.na(refs)) {
       out[[1]] <- h3(code("References"))
       out[[2]] <- p(HTML(gsub("\\n", "<br/>", refs)))
