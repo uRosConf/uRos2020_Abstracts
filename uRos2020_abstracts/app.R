@@ -89,7 +89,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(session, input, output) {
   output$curTitle <- renderText({
-    abst[as.numeric(input$title), "Title"]
+    abst[as.numeric(input$title), ]$Title
   })
 
   output$curAuthor <- renderText({
