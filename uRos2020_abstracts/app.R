@@ -5,6 +5,7 @@ library(tm)
 
 # abst <- readxl::read_excel("abstracts.xlsx")
 # setDT(abst)
+# saveRDS(abst, file = "abstracts.Rds")
 abst <- readRDS("abstracts.Rds")
 abst <- abst[sample(1:nrow(abst)), ]
 setorderv(abst, c("Type of talk", "Title"))
