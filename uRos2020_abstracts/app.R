@@ -57,7 +57,7 @@ ui <- fluidPage(
     mainPanel(
       shiny::wellPanel(
         h1("!!! uRos2020 postponed !!!"),
-        h5("Due to the developments regarding covid19, the conference was posponed to December 4th to 6th 2020.",
+        h5("Due to the developments regarding covid19, the conference was postponed to December 4th to 6th 2020.",
            "For further updates, please check the", a("conference website", href = "http://r-project.ro/conference2020.html"), ".")
         ),
 
